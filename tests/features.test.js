@@ -26,7 +26,7 @@ test('story sharing and fallback download are present',()=>{
 test('24-hour local audio storage is present',()=>{
   assert.match(app,/const AUDIO_TTL=24\*60\*60\*1000/);
   assert.match(app,/indexedDB/);
-  assert.match(app,/Date\.now\(\)-savedAudio\.savedAt>=AUDIO_TTL/);
+  assert.match(app,/Date\.now\(\)-item\.savedAt>=AUDIO_TTL/);
 });
 test('HTML loads versioned app and styles',()=>{
   assert.match(html,/app\.js\?v=/);
