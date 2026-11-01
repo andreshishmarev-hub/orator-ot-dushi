@@ -14,7 +14,42 @@ try{history=readHistory(localStorage);}catch{}
 let learnerName='';try{learnerName=localStorage.getItem('orator-name')||'';}catch{}
 const milestones=[5,10,25,50,75,100];
 const webinarUrl=''; // Указать проверенную ссылку на бесплатный вебинар перед публикацией.
-function downloadDiploma(){const count=milestones.filter(n=>history.length>=n).at(-1);if(!count)return;const name=learnerName||'Участник';const canvas=document.createElement('canvas');canvas.width=1600;canvas.height=1130;const c=canvas.getContext('2d');const bg=c.createLinearGradient(0,0,1600,1130);bg.addColorStop(0,'#fff6ec');bg.addColorStop(1,'#f8e1ea');c.fillStyle=bg;c.fillRect(0,0,1600,1130);c.strokeStyle='#b78c4d';c.lineWidth=13;c.strokeRect(52,52,1496,1026);c.strokeStyle='#d3ae73';c.lineWidth=3;c.strokeRect(75,75,1450,980);c.textAlign='center';c.fillStyle='#263650';c.font='bold 48px Georgia,serif';c.fillText('ОРАТОР ОТ ДУШИ',800,205);c.fillStyle='#b78c4d';c.font='36px sans-serif';c.fillText('ИМЕННОЙ ДИПЛОМ',800,310);c.fillStyle='#263650';c.font='bold 92px Georgia,serif';c.fillText('За смелость говорить',800,440);c.font='bold 70px Georgia,serif';const fullName=name.length>30?name.slice(0,30)+'…':name;c.fillText(fullName,800,580);c.font='38px sans-serif';c.fillText('успешно завершил(а) '+count+' '+(count===1?'выступление':count<5?'выступления':'выступлений'),800,670);c.fillText('Каждая минута речи – шаг к уверенности!',800,742);c.fillStyle='#a96f88';c.font='36px sans-serif';c.fillText('Школа Андрея Шишмарева',800,880);c.font='30px sans-serif';c.fillText(new Date().toLocaleDateString('ru-RU'),800,955);const data=canvas.toDataURL('image/png');const overlay=document.createElement('div');overlay.id='diploma-preview';overlay.setAttribute('role','dialog');overlay.setAttribute('aria-modal','true');overlay.setAttribute('aria-label','Просмотр диплома');overlay.innerHTML=`<div class="diploma-modal"><button type="button" id="close-diploma" class="secondary">✕ Закрыть</button><p>Твой диплом! Сделай скриншот или сохрани изображение.</p><img src="${data}" alt="Именной диплом за ${count} выступлений"><a class="secondary" href="${data}" download="diplom-orator-ot-dushi.png">Сохранить диплом</a></div>`;document.body.append(overlay);const close=()=>{overlay.remove();document.removeEventListener('keydown',onKey);};const onKey=e=>{if(e.key==='Escape')close();};overlay.querySelector('#close-diploma').addEventListener('click',close);overlay.addEventListener('click',e=>{if(e.target===overlay)close();});document.addEventListener('keydown',onKey);overlay.querySelector('#close-diploma').focus();}
+const awardNames=['Первый голос','Голос уверенности','Смелость быть собой','Сила слова','Вдохновляющий голос','Голос, который меняет мир'];
+const awardQuotes=['Я решился. Я выступил. Я могу!','С каждым выступлением я становлюсь свободнее!','Мой голос достоин быть услышанным!','Я больше не прячусь за молчанием!','Мои слова способны вдохновлять других!','Я говорю от души. И меня слышат!'];
+function downloadDiploma(){
+ const count=milestones.filter(n=>history.length>=n).at(-1);if(!count)return;
+ const level=milestones.indexOf(count),name=(learnerName||'Участник').slice(0,45);
+ const palettes=[['#241436','#7f386d','#fa8b73'],['#172844','#4361a0','#e9a56e'],['#232445','#7657b0','#f5a9a0'],['#123f46','#218b87','#edb46b'],['#44244e','#a24b87','#f5b67a'],['#1b2448','#754a9b','#ffd18a']];
+ const [dark,mid,bright]=palettes[level];
+ const canvas=document.createElement('canvas');canvas.width=1080;canvas.height=1920;const c=canvas.getContext('2d');
+ const bg=c.createLinearGradient(0,0,1080,1920);bg.addColorStop(0,dark);bg.addColorStop(.56,mid);bg.addColorStop(1,bright);c.fillStyle=bg;c.fillRect(0,0,1080,1920);
+ const glow=(x,y,r,color)=>{const g=c.createRadialGradient(x,y,0,x,y,r);g.addColorStop(0,color);g.addColorStop(1,'transparent');c.fillStyle=g;c.fillRect(x-r,y-r,2*r,2*r);};
+ glow(940,340,610,'#ffffff24');glow(130,1360,650,'#ffdb9c28');glow(540,780,540,'#ffddab1b');
+ c.strokeStyle='#ffffff75';c.lineWidth=3;c.strokeRect(46,46,988,1828);c.strokeStyle='#ffffff35';c.lineWidth=1;c.strokeRect(64,64,952,1792);
+ // Декоративные конфетти без случайности: диплом воспроизводим.
+ for(let i=0;i<95;i++){const x=90+((i*317)%900),y=135+((i*499)%1560);c.save();c.translate(x,y);c.rotate(i*.67);c.globalAlpha=.28+(i%4)*.14;c.fillStyle=i%3===0?'#ffe4a6':i%3===1?'#ffffff':'#ffc1c6';if(i%5===0){c.beginPath();c.arc(0,0,3+(i%4),0,Math.PI*2);c.fill();}else c.fillRect(-3,-9,6,18);c.restore();}
+ const center=(text,y,size=50,font='sans-serif',color='#ffffff')=>{c.fillStyle=color;c.font=font.includes('px')?font:`700 ${size}px ${font}`;c.textAlign='center';c.fillText(text,540,y,930);};
+ center('ОРАТОР ОТ ДУШИ',250,53,'Georgia,serif','#fff3da');
+ center('МОЯ ПОБЕДА НАД МОЛЧАНИЕМ',352,31,'sans-serif','#ffe4bd');
+ // Круглая медаль с крупной цифрой.
+ c.beginPath();c.arc(540,740,258,0,Math.PI*2);c.fillStyle='#ffffff16';c.fill();c.strokeStyle='#ffe4b9';c.lineWidth=8;c.stroke();
+ c.beginPath();c.arc(540,740,236,0,Math.PI*2);c.strokeStyle='#ffffff6b';c.lineWidth=2;c.stroke();
+ center(String(count),795,260,'Georgia,serif','#fff9e9');
+ center('ВЫСТУПЛЕНИЙ',880,42,'sans-serif','#fff1d7');
+ center(awardNames[level].toUpperCase(),1110,50,'Georgia,serif','#fff8e8');
+ // Имя – максимально крупное, но с ограничением по ширине.
+ let fontSize=104;c.font=`700 ${fontSize}px Georgia,serif`;while(c.measureText(name).width>870&&fontSize>43){fontSize-=3;c.font=`700 ${fontSize}px Georgia,serif`;}
+ center(name,1270,fontSize,'Georgia,serif','#ffffff');
+ c.fillStyle='#ffe6b6';c.fillRect(280,1328,520,3);
+ const quote=awardQuotes[level];const words=quote.split(' '),lines=[];let line='';c.font='500 46px sans-serif';
+ for(const word of words){const next=line?line+' '+word:word;if(c.measureText(next).width>850&&line){lines.push(line);line=word;}else line=next;}if(line)lines.push(line);
+ lines.forEach((t,i)=>center(t,1430+i*65,46,'sans-serif','#fff9ed'));
+ center('Я говорю от души. А ты?',1710,41,'Georgia,serif','#fff7e4');
+ center('Тренажёр «Оратор от души»',1785,31,'sans-serif','#ffffff');
+ const data=canvas.toDataURL('image/png');const overlay=document.createElement('div');overlay.id='diploma-preview';overlay.setAttribute('role','dialog');overlay.setAttribute('aria-modal','true');overlay.setAttribute('aria-label','Просмотр награды');
+ overlay.innerHTML=`<div class="diploma-modal"><button type="button" id="close-diploma" class="secondary">✕ Закрыть</button><p>Твоя награда для сторис! Сделай скриншот или сохрани изображение.</p><img src="${data}" alt="Вертикальная награда за ${count} выступлений"><a class="secondary" href="${data}" download="orator-nagrada-${count}-story.png">Сохранить для сторис</a></div>`;
+ document.body.append(overlay);const close=()=>{overlay.remove();document.removeEventListener('keydown',onKey);};const onKey=e=>{if(e.key==='Escape')close();};overlay.querySelector('#close-diploma').addEventListener('click',close);overlay.addEventListener('click',e=>{if(e.target===overlay)close();});document.addEventListener('keydown',onKey);overlay.querySelector('#close-diploma').focus();
+}
 const celebrations=['Твой голос прозвучал. И это уже победа!','Смелость растёт каждый раз, когда ты говоришь!','Ты сделал то, на что многие не решаются. Гордимся тобой!','Сегодня ты стал чуточку свободнее. Продолжай!'];
 let audioContext=null;
 function playVictory(){try{const C=window.AudioContext||window.webkitAudioContext;if(!C)return;audioContext=audioContext||new C();audioContext.resume().catch(()=>{});const now=audioContext.currentTime;const notes=[523.25,659.25,783.99,1046.5,783.99,1046.5];notes.forEach((hz,i)=>{const osc=audioContext.createOscillator(),gain=audioContext.createGain();osc.type='sine';osc.frequency.value=hz;osc.connect(gain);gain.connect(audioContext.destination);const start=now+i*.14;gain.gain.setValueAtTime(.0001,start);gain.gain.exponentialRampToValueAtTime(.11,start+.025);gain.gain.exponentialRampToValueAtTime(.0001,start+.28);osc.start(start);osc.stop(start+.3);});}catch{}}
