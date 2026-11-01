@@ -49,3 +49,12 @@ test('all unlocked milestones have individual award buttons',()=>{
  assert.match(app,/achieved\.map\(n=>button\('award-'\+n/);
  assert.match(app,/downloadDiploma\(n\)/);
 });
+
+test('daily reminder and manual progress transfer are available without a backend',()=>{
+ assert.match(app,/function reminderBanner\(/);
+ assert.match(app,/orator-reminder/);
+ assert.match(app,/function exportProgress\(/);
+ assert.match(app,/async function importProgress\(/);
+ assert.match(app,/format:'orator-progress'/);
+ assert.match(app,/orator-ot-dushi\.ru/);
+});
