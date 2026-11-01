@@ -57,3 +57,10 @@ main[data-stage="prep"] .structure .small,main[data-stage="ready"] .structure .s
 .diploma-modal p{margin:0;color:white;font-size:17px}
 .diploma-modal img{display:block;width:100%;height:auto;border-radius:8px;background:white}
 .diploma-modal .secondary{display:inline-block;max-width:100%;padding:13px 20px;border-radius:12px;text-decoration:none;text-align:center;cursor:pointer;background:#fff1e4;color:#27364f;border:1px solid #d8bdb0;font-weight:700}
+
+/* Режим чистой сторис: изображение без кнопок и подписи. */
+#diploma-preview.story-fullscreen{padding:0;align-items:center;background:#161321}
+#diploma-preview.story-fullscreen .diploma-modal{width:100%;height:100%;max-width:none;padding:0;gap:0;justify-content:center}
+#diploma-preview.story-fullscreen .diploma-modal > :not(img){display:none}
+#diploma-preview.story-fullscreen .diploma-modal img{width:auto;max-width:100vw;height:auto;max-height:100dvh;object-fit:contain;border-radius:0;cursor:pointer}
+#diploma-preview .diploma-modal img{cursor:pointer}
