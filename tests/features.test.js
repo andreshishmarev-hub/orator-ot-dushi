@@ -32,3 +32,14 @@ test('HTML loads versioned app and styles',()=>{
   assert.match(html,/app\.js\?v=/);
   assert.match(html,/style\.css\?v=/);
 });
+
+test('installable app assets and daily motivation are present',()=>{
+ const manifest=JSON.parse(readFileSync(new URL('../manifest.webmanifest',import.meta.url),'utf8'));
+ const sw=readFileSync(new URL('../sw.js',import.meta.url),'utf8');
+ assert.equal(manifest.display,'standalone');
+ assert.match(html,/rel="manifest"/);
+ assert.match(html,/serviceWorker\.register/);
+ assert.match(sw,/orator-static-v1/);
+ assert.match(app,/function trainingStreak\(/);
+ assert.match(app,/function inviteFriend\(/);
+});
