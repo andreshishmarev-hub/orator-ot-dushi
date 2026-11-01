@@ -39,7 +39,7 @@ test('installable app assets and daily motivation are present',()=>{
  assert.equal(manifest.display,'standalone');
  assert.match(html,/rel="manifest"/);
  assert.match(html,/serviceWorker\.register/);
- assert.match(sw,/orator-static-v1/);
+ assert.match(sw,/orator-static-v2/);
  assert.match(app,/function trainingStreak\(/);
  assert.match(app,/function inviteFriend\(/);
 });
