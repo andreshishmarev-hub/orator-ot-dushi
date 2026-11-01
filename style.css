@@ -64,3 +64,5 @@ main[data-stage="prep"] .structure .small,main[data-stage="ready"] .structure .s
 #diploma-preview.story-fullscreen .diploma-modal > :not(img){display:none}
 #diploma-preview.story-fullscreen .diploma-modal img{width:auto;max-width:100vw;height:auto;max-height:100dvh;object-fit:contain;border-radius:0;cursor:pointer}
 #diploma-preview .diploma-modal img{cursor:pointer}
+
+.award-gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin-top:20px}.award-gallery .secondary{width:100%;white-space:normal;min-height:58px}
