@@ -51,3 +51,9 @@ main[data-stage="prep"] .structure li span,main[data-stage="ready"] .structure l
 main[data-stage="prep"] .structure li:before,main[data-stage="ready"] .structure li:before,main[data-stage="record"] .structure li:before{font-size:12px}
 main[data-stage="prep"] .structure .small,main[data-stage="ready"] .structure .small,main[data-stage="record"] .structure .small{display:none}
 }
+/* Диплом открывается на экране, чтобы его можно было просмотреть и сфотографировать. */
+#diploma-preview{position:fixed;inset:0;z-index:9999;background:rgba(20,24,40,.9);overflow:auto;padding:18px;display:flex;align-items:flex-start;justify-content:center}
+.diploma-modal{width:min(100%,850px);display:flex;flex-direction:column;align-items:center;gap:12px;color:white;text-align:center;padding-bottom:30px}
+.diploma-modal p{margin:0;color:white;font-size:17px}
+.diploma-modal img{display:block;width:100%;height:auto;border-radius:8px;background:white}
+.diploma-modal .secondary{display:inline-block;max-width:100%;padding:13px 20px;border-radius:12px;text-decoration:none;text-align:center;cursor:pointer;background:#fff1e4;color:#27364f;border:1px solid #d8bdb0;font-weight:700}
