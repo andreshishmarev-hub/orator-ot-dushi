@@ -43,3 +43,9 @@ test('installable app assets and daily motivation are present',()=>{
  assert.match(app,/function trainingStreak\(/);
  assert.match(app,/function inviteFriend\(/);
 });
+
+test('all unlocked milestones have individual award buttons',()=>{
+ assert.match(app,/function downloadDiploma\(requestedCount\)/);
+ assert.match(app,/achieved\.map\(n=>button\('award-'\+n/);
+ assert.match(app,/downloadDiploma\(n\)/);
+});
