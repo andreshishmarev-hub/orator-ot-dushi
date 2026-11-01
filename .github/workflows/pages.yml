@@ -27,7 +27,7 @@ jobs:
       - name: Подготовить публичные файлы
         run: |
           mkdir -p public
-          cp index.html style.css app.js core.js icon.svg public/
+          cp index.html style.css app.js core.js icon.svg manifest.webmanifest sw.js public/
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
