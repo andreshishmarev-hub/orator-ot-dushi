@@ -20,3 +20,34 @@ header{background:#ffffffb8;border-radius:0 0 22px 22px}
 .name-invite .actions{margin-top:12px}
 @keyframes celebrate{from{opacity:0;transform:translateY(15px) scale(.8)}to{opacity:1;transform:none}}
 @media(max-width:540px){.confetti{font-size:21px;letter-spacing:5px}.celebration-copy{font-size:18px}.name-invite{padding:18px}}
+
+/* Подсказки для выступающего: крупно и контрастно */
+.structure{border:2px solid #e6c5c7;box-shadow:0 8px 26px #8b536b16}
+.structure h3{font-size:29px;line-height:1.22}
+.structure li{font-size:19px;line-height:1.3;padding-left:43px;margin:25px 0}
+.structure li b{font-size:19px}
+.structure li span{font-size:16px;line-height:1.4;color:#544b59;margin-top:5px}
+.structure li:before{font-size:17px;font-weight:700}
+.structure .small{font-size:15px;color:#544b59}
+.fireworks{position:relative;height:65px;max-width:360px;margin:auto;pointer-events:none;overflow:visible}
+.fireworks span{position:absolute;left:50%;top:45%;font-size:27px;opacity:0;animation:burst 1.4s ease-out forwards}
+.fireworks span:nth-child(1){--x:-145px;--y:-40px;color:#f3b24b;animation-delay:.05s}
+.fireworks span:nth-child(2){--x:130px;--y:-45px;color:#dc6d99;animation-delay:.1s}
+.fireworks span:nth-child(3){--x:-85px;--y:-70px;color:#8d79d5;animation-delay:.15s}
+.fireworks span:nth-child(4){--x:85px;--y:-70px;color:#e1a546;animation-delay:.2s}
+.fireworks span:nth-child(5){--x:-160px;--y:15px;color:#c76f7b;animation-delay:.25s}
+.fireworks span:nth-child(6){--x:155px;--y:20px;color:#b68a3c;animation-delay:.3s}
+.fireworks span:nth-child(7){--x:-50px;--y:20px;color:#9c80cb;animation-delay:.35s}
+.fireworks span:nth-child(8){--x:55px;--y:22px;color:#eaa54c;animation-delay:.4s}
+@keyframes burst{0%{opacity:0;transform:translate(0,0) scale(.2) rotate(0)}25%{opacity:1}80%{opacity:1}100%{opacity:0;transform:translate(var(--x),var(--y)) scale(1.4) rotate(120deg)}}
+@media(max-width:800px){.structure ol{display:block}.structure li{margin:18px 0}.structure .small{display:block}}
+@media(max-width:540px){.structure h3{font-size:26px}.structure li b{font-size:20px}.structure li span{font-size:17px}.structure li:before{font-size:17px}
+main[data-stage="prep"] .session-layout,main[data-stage="ready"] .session-layout,main[data-stage="record"] .session-layout{display:flex;flex-direction:column}
+main[data-stage="prep"] .structure,main[data-stage="ready"] .structure,main[data-stage="record"] .structure{order:-1}
+main[data-stage="prep"] .structure ol,main[data-stage="ready"] .structure ol,main[data-stage="record"] .structure ol{display:grid;grid-template-columns:1fr 1fr;gap:5px 10px}
+main[data-stage="prep"] .structure li,main[data-stage="ready"] .structure li,main[data-stage="record"] .structure li{padding-left:26px;margin:8px 0}
+main[data-stage="prep"] .structure li b,main[data-stage="ready"] .structure li b,main[data-stage="record"] .structure li b{font-size:17px}
+main[data-stage="prep"] .structure li span,main[data-stage="ready"] .structure li span,main[data-stage="record"] .structure li span{font-size:14px}
+main[data-stage="prep"] .structure li:before,main[data-stage="ready"] .structure li:before,main[data-stage="record"] .structure li:before{font-size:12px}
+main[data-stage="prep"] .structure .small,main[data-stage="ready"] .structure .small,main[data-stage="record"] .structure .small{display:none}
+}
