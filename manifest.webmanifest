@@ -1,0 +1,18 @@
+{
+  "name": "Оратор от души – тренажёр речи",
+  "short_name": "Оратор от души",
+  "description": "Тренируй публичные выступления каждый день",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#fcfcfa",
+  "theme_color": "#142c46",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
