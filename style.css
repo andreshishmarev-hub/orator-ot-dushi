@@ -66,3 +66,5 @@ main[data-stage="prep"] .structure .small,main[data-stage="ready"] .structure .s
 #diploma-preview .diploma-modal img{cursor:pointer}
 
 .award-gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin-top:20px}.award-gallery .secondary{width:100%;white-space:normal;min-height:58px}
+
+.reminder-card{margin:18px 0;padding:18px;border-radius:16px;background:#fff0e7;border:1px solid #e8cbbd}.reminder-card p{margin:8px 0 14px}.import-label{display:inline-flex;align-items:center;justify-content:center;cursor:pointer;border-radius:12px;padding:13px 18px;border:1px solid #d8bdb0;background:#fff1e4;color:#27364f;font-weight:700}.card input[type=checkbox]{width:20px;height:20px;vertical-align:middle;accent-color:#b56e79}
